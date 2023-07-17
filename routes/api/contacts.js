@@ -2,7 +2,7 @@ const express = require("express");
 
 const ctrl = require("../../controllers/contacts");
 
-const { validateBody, validateIsEmptyBody } = require("../../middlewares");
+const { validateBody } = require("../../middlewares");
 
 const { addSchema } = require("../../schemas/contacts");
 
@@ -16,11 +16,6 @@ router.post("/", validateBody(addSchema), ctrl.add);
 
 router.delete("/:id", ctrl.deleteById);
 
-router.put(
-	"/:id",
-	validateBody(addSchema),
-	validateIsEmptyBody(addSchema),
-	ctrl.updateById
-);
+router.put("/:id", validateBody(addSchema), ctrl.updateById);
 
 module.exports = router;
