@@ -12,6 +12,7 @@ const {
 	validateBody,
 	authenticate,
 	validateEmptyBody,
+	upload,
 } = require("../../middlewares/index");
 
 const authRouter = express.Router();
@@ -38,6 +39,13 @@ authRouter.patch(
 	validateEmptyBody,
 	validateBody(updateSubscription),
 	authController.updateUserSubscription
+);
+
+authRouter.patch(
+	"/avatars",
+	authenticate,
+	upload.single("avatar"),
+	authController.updateAvatar
 );
 
 module.exports = authRouter;
