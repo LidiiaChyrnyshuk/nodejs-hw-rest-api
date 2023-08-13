@@ -30,8 +30,15 @@ const updateSubscription = Joi.object({
 		}),
 });
 
+const userEmailSchema = Joi.object({
+	email: Joi.string().email().required().messages({
+		"any.required": "missing required email field",
+	}),
+});
+
 module.exports = {
 	userSignupSchema,
 	userSigninSchema,
 	updateSubscription,
+	userEmailSchema,
 };
